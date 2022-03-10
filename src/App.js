@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Switch, Route, Redirect} from 'react-router';
 
 import TopMenu from './components/TopMenu';
@@ -23,6 +23,33 @@ import AdminPageDeletedUsers from "./pages/AdminPageDeletedUsers";
 
 function App() {
     const isAuth = useContext(AuthContext);
+
+    const {user} = useContext(AuthContext);
+    const [admini, toggleAdmini] = useState(false);
+
+    function adminCheck() {
+        if (user) {
+            for (let i = 0; i < user.authorities.length; i++) {
+                if (user.authorities && user.authorities[i].authority === 'ROLE_ADMIN') {
+                    toggleAdmini(true);
+                }
+            }
+        } else {
+            toggleAdmini(false);
+        }
+    }
+
+    useEffect(()=> {
+        adminCheck();
+
+    },[])
+
+    console.log(admini);
+
+
+
+
+
 
     return (
         <>
@@ -59,8 +86,10 @@ function App() {
                     <Route path="/fullgamepage/:gameId">
                         <FullGame/>
                     </Route>
-                    <Route exact path="/adminpage">
-                        <AdminPage/>
+                    <Route exact path="/adminpage"
+                           render={()=> (admini ? <AdminPage/> : <Redirect to={""} /> )}
+                    >
+
                     </Route>
                     <Route exact path="/adminpage/users">
                         <AdminPageUsers/>

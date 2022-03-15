@@ -84,8 +84,10 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${token}`
                 },
             });
-            console.log(result.data.username)
-            console.log(result.data.authorities)
+
+            console.log(result.data);
+            console.log(result.data.username);
+            console.log(result.data.authorities);
 
             // zet de gegevens in de state
             toggleIsAuth({

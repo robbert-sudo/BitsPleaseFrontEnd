@@ -87,6 +87,9 @@ function AuthContextProvider({children}) {
             console.log(result.data.username)
             console.log(result.data.authorities)
 
+
+
+
             // zet de gegevens in de state
             toggleIsAuth({
                 ...isAuth,
@@ -119,6 +122,8 @@ function AuthContextProvider({children}) {
             });
         }
     }
+
+
 
     const contextData = {
         isAuth: isAuth.isAuth,

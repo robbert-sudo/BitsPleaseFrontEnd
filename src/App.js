@@ -42,7 +42,7 @@ function App() {
     useEffect(()=> {
         adminCheck();
 
-    },[])
+    })
 
     console.log(admini);
 
@@ -91,11 +91,16 @@ function App() {
                     >
 
                     </Route>
-                    <Route exact path="/adminpage/users">
-                        <AdminPageUsers/>
+                    <Route exact path="/adminpage/users"
+                           render={()=> (admini ? <AdminPageUsers/> : <Redirect to={""} /> )}
+                    >
+
                     </Route>
-                    <Route exact path="/adminpage/deletedusers">
-                        <AdminPageDeletedUsers/>
+                    <Route exact path="/adminpage/deletedusers"
+                           render={()=> (admini ? <AdminPageDeletedUsers/> : <Redirect to={""} /> )}
+
+                    >
+
                     </Route>
                     <Route path="/rating/:uploaderId">
                         <RatingPage/>

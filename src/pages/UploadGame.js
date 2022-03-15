@@ -29,6 +29,8 @@ function UploadGame() {
     async function handleGameUpload(e) {
         e.preventDefault();
 
+        const token = localStorage.getItem('token');
+
         console.log(gameName);
         console.log(system);
         console.log(developer);
@@ -48,6 +50,9 @@ function UploadGame() {
                         "price": price,
                         "image": postImage.image,
                     }, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
                         cancelToken: source.token,
                     });
                     history.push("games");

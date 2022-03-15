@@ -2,7 +2,7 @@ import React from "react";
 import {useHistory} from "react-router-dom";
 
 
-// voor elke role toegankelijk is niet de bedoeling
+// voor elke rol toegankelijk is niet de bedoeling
 
 function AdminPage() {
     const history = useHistory();

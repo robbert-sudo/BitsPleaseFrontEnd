@@ -2,19 +2,17 @@ import React, {useState} from "react";
 import axios from "axios";
 import GameSummary from "../components/GameSummary";
 
-function GamesByName() {
-    const [searchName, toggleSearchName] = useState("");
+function GamesBySystem() {
+    const [systemName, setSystemName] = useState(null);
     const [gamesData, setGamesData] = useState([]);
-
 
     const source = axios.CancelToken.source();
 
-
-    async function fetchGameByNameContain(e) {
+    async function fetchGameBySystem(e) {
         e.preventDefault();
         const token = localStorage.getItem('token');
         try {
-            const result = await axios.get(`http://localhost:8080/games?name=${searchName}`, {
+            const result = await axios.get(`http://localhost:8080/games/system/${systemName}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -22,36 +20,31 @@ function GamesByName() {
                 cancelToken: source.token,
             });
             setGamesData(result.data);
-            // console.log(gamesData);
             console.log(result.data);
-
         } catch (e) {
             console.error(e);
         }
     }
 
-
     return (
         <>
             <div className="bars">
-                <form
-                    onSubmit={fetchGameByNameContain}>
-                    <input className="searchbar"
-                           type="text"
-                           onChange={(e) => toggleSearchName(e.target.value)}
-                           placeholder="zoek game op naam"
-                    />
-                    <button className="searchbutton"
-                            type="submit">
-                        nu zoeken
-                    </button>
-                </form>
-            </div>
+        <form
+            onSubmit={fetchGameBySystem}>
+            <input className="searchbar"
+                   type="text"
+                   onChange={(e) => setSystemName(e.target.value)}
+                   placeholder="zoek game op systeem"
+            />
+            <button className="searchbutton"
+                    type="submit">
+                nu zoeken
+            </button>
+        </form>
+        </div>
             {gamesData && gamesData.map((item) => <GameSummary game={item} key={item.id}/>)}
-
-
         </>
     );
 }
 
-export default GamesByName;
+export default GamesBySystem;

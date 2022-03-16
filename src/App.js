@@ -19,7 +19,7 @@ import RatingPage from "./pages/RatingPage";
 import AdminPageUsers from "./pages/AdminPageUsers";
 import EditProfile from "./pages/EditProfile";
 import AdminPageDeletedUsers from "./pages/AdminPageDeletedUsers";
-
+import GamesBySystem from "./pages/GamesBySystem";
 
 function App() {
     const isAuth = useContext(AuthContext);
@@ -73,6 +73,9 @@ function App() {
                     </Route>
                     <Route exact path="/deleteprofile">
                         <EditProfile/>
+                    </Route>
+                    <Route exact path="/gamesbysystem">
+                        <GamesBySystem/>
                     </Route>
                 </Switch>
             </div>

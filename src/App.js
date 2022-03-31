@@ -24,13 +24,9 @@ import GamesBySystem from "./pages/GamesBySystem";
 function App() {
     const isAuth = useContext(AuthContext);
 
-    const {user, admin} = useContext(AuthContext);
+    const { admin } = useContext(AuthContext);
 
     console.log(admin);
-
-
-
-
 
 
     return (

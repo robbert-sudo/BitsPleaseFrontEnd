@@ -24,27 +24,9 @@ import GamesBySystem from "./pages/GamesBySystem";
 function App() {
     const isAuth = useContext(AuthContext);
 
-    const {user} = useContext(AuthContext);
-    const [admini, toggleAdmini] = useState(false);
+    const {user, admin} = useContext(AuthContext);
 
-    function adminCheck() {
-        if (user) {
-            for (let i = 0; i < user.authorities.length; i++) {
-                if (user.authorities && user.authorities[i].authority === 'ROLE_ADMIN') {
-                    toggleAdmini(true);
-                }
-            }
-        } else {
-            toggleAdmini(false);
-        }
-    }
-
-    useEffect(()=> {
-        adminCheck();
-
-    })
-
-    console.log(admini);
+    console.log(admin);
 
 
 
@@ -87,17 +69,18 @@ function App() {
                         <FullGame/>
                     </Route>
                     <Route exact path="/adminpage"
-                           render={()=> (admini ? <AdminPage/> : <Redirect to={""} /> )}
+                           render={()=> (admin ? <AdminPage/> : <Redirect to={""} /> )}
                     >
 
                     </Route>
+
                     <Route exact path="/adminpage/users"
-                           render={()=> (admini ? <AdminPageUsers/> : <Redirect to={""} /> )}
+                           render={()=> (admin ? <AdminPageUsers/> : <Redirect to={""} /> )}
                     >
 
                     </Route>
                     <Route exact path="/adminpage/deletedusers"
-                           render={()=> (admini ? <AdminPageDeletedUsers/> : <Redirect to={""} /> )}
+                           render={()=> (admin ? <AdminPageDeletedUsers/> : <Redirect to={""} /> )}
 
                     >
 

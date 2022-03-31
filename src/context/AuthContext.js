@@ -94,7 +94,7 @@ function AuthContextProvider({children}) {
             console.log(result.data);
             console.log(result.data.username);
             console.log(result.data.authorities);
-            //check of de gebruiker admin rechten heeft
+            //check of de gebruiker admin rechten heeft en sla dit op als boolean in let admin
             if (result) {
                 for (let i = 0; i < result.data.authorities.length; i++) {
                     if (result.data.authorities && result.data.authorities[i].authority === 'ROLE_ADMIN' ) {

@@ -23,15 +23,19 @@ function GamesLandingPage() {
             </button>
 
 
-            <div>
-                <button className="searchbutton"
-                        type="button"
-                        onClick={()=> history.push("/gamesbyname")}>
-                    zoek game op naam
-                </button>
+            <button className="searchbutton"
+                    type="button"
+                    onClick={() => history.push("/gamesbyname")}>
+                zoek game op naam
+            </button>
+            <button className="button"
+                    type="button"
+                    onClick={()=> history.push("gamesbysystem")}>
+                zoek game op systeem
+            </button>
 
 
-            </div>
+
         </>
     );
 }

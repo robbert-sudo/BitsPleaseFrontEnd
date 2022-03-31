@@ -7,26 +7,26 @@ import SystemButton from "./SystemButton";
 
 function TopMenu() {
     const history = useHistory();
-    const {isAuth, logout, user} = useContext(AuthContext);
-    const [admini, toggleAdmini] = useState(false);
+    const {isAuth, logout, user, admin} = useContext(AuthContext);
+    // const [admini, toggleAdmini] = useState(false);
 
 
-    function adminCheck() {
-        if (user) {
-            for (let i = 0; i < user.authorities.length; i++) {
-                if (user.authorities && user.authorities[i].authority === 'ROLE_ADMIN') {
-                    toggleAdmini(true);
-                }
-            }
-        } else {
-            toggleAdmini(false);
-        }
-    }
+    // function adminCheck() {
+    //     if (user) {
+    //         for (let i = 0; i < user.authorities.length; i++) {
+    //             if (user.authorities && user.authorities[i].authority === 'ROLE_ADMIN') {
+    //                 toggleAdmini(true);
+    //             }
+    //         }
+    //     } else {
+    //         toggleAdmini(false);
+    //     }
+    // }
 
 
-    useEffect(() => {
-        adminCheck();
-    });
+    // useEffect(() => {
+    //     adminCheck();
+    // });
 
 
     return (
@@ -50,7 +50,7 @@ function TopMenu() {
             </div>
 
 
-            {admini ?
+            {admin ?
                 <>
                     <button className="button"
                             type="button"

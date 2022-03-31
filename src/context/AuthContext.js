@@ -9,6 +9,7 @@ function AuthContextProvider({children}) {
     const [isAuth, toggleIsAuth] = useState({
         isAuth: false,
         user: null,
+        admin: false,
         status: 'pending',
     });
 
@@ -18,6 +19,7 @@ function AuthContextProvider({children}) {
     useEffect(() => {
         // haal jwt op uit de local storage
         const token = localStorage.getItem('token');
+        //console.log('authcontexts useeffect');
 
         //als er een token is, wordt gebruikers data opgehaald
         if (token) {
@@ -29,6 +31,7 @@ function AuthContextProvider({children}) {
             toggleIsAuth({
                 isAuth: false,
                 user: null,
+                admin: false,
                 status: 'done',
             });
 
@@ -65,6 +68,7 @@ function AuthContextProvider({children}) {
         toggleIsAuth({
             isAuth: false,
             user: null,
+            admin: false,
             status: 'done',
         });
 
@@ -75,6 +79,8 @@ function AuthContextProvider({children}) {
 
     // omdat fetchUserData in login- en mounting effect wordt gebruikt, is hij hier gedeclareert
     async function fetchUserData(id, token, redirectUrl) {
+        let admin = false;
+
 
         try {
             // haal gebruikersData op met de token en id(username) van de gebruiker
@@ -88,6 +94,16 @@ function AuthContextProvider({children}) {
             console.log(result.data);
             console.log(result.data.username);
             console.log(result.data.authorities);
+            //check of de gebruiker admin rechten heeft
+            if (result) {
+                for (let i = 0; i < result.data.authorities.length; i++) {
+                    if (result.data.authorities && result.data.authorities[i].authority === 'ROLE_ADMIN' ) {
+                        admin = true;
+                    }
+                }
+            } else {
+                admin = false;
+            }
 
 
 
@@ -102,6 +118,7 @@ function AuthContextProvider({children}) {
                     enabled: result.data.enabled,
                     authorities: result.data.authorities
                 },
+                admin: admin,
                 status: 'done',
             });
 
@@ -119,6 +136,7 @@ function AuthContextProvider({children}) {
             toggleIsAuth({
                 isAuth: false,
                 user: null,
+                admin: false,
                 status: 'done',
 
             });
@@ -130,6 +148,7 @@ function AuthContextProvider({children}) {
     const contextData = {
         isAuth: isAuth.isAuth,
         user: isAuth.user,
+        admin: isAuth.admin,
         login: login,
         logout: logout,
 

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import {Switch, Route, Redirect} from 'react-router';
 
 import TopMenu from './components/TopMenu';

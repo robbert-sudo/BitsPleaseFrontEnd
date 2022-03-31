@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import logo from '../assets/logo_bits_please.svg'
 import {useHistory, Link} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
@@ -7,7 +7,7 @@ import SystemButton from "./SystemButton";
 
 function TopMenu() {
     const history = useHistory();
-    const {isAuth, logout, user, admin} = useContext(AuthContext);
+    const {isAuth, logout, admin} = useContext(AuthContext);
 
 
 

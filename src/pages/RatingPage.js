@@ -6,7 +6,7 @@ function RatingPage() {
 
     const {uploaderId} = useParams();
     const [toBeRated, toggleToBeRated] = useState(null);
-    const [rating, toggleRating] = useState();
+    const [rating, toggleRating] = useState(8);
     const [voted, toggleVoted] = useState(false);
     const source = axios.CancelToken.source();
 

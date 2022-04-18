@@ -76,6 +76,20 @@ function AuthContextProvider({children}) {
         history.push("/");
     }
 
+    function adminCheck(result) {
+        let admin = false;
+        if (result) {
+            for (let i = 0; i < result.data.authorities.length; i++) {
+                if (result.data.authorities && result.data.authorities[i].authority === 'ROLE_ADMIN' ) {
+                    admin = true;
+                }
+            }
+        } else {
+            admin = false;
+        }
+        return admin;
+    }
+
 
     // omdat fetchUserData in login- en mounting effect wordt gebruikt, is hij hier gedeclareert
     async function fetchUserData(id, token, redirectUrl) {
@@ -95,15 +109,7 @@ function AuthContextProvider({children}) {
             console.log(result.data.username);
             console.log(result.data.authorities);
             //check of de gebruiker admin rechten heeft en sla dit op als boolean in let admin
-            if (result) {
-                for (let i = 0; i < result.data.authorities.length; i++) {
-                    if (result.data.authorities && result.data.authorities[i].authority === 'ROLE_ADMIN' ) {
-                        admin = true;
-                    }
-                }
-            } else {
-                admin = false;
-            }
+           admin = adminCheck(result);
 
 
 

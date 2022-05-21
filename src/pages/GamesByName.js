@@ -32,7 +32,7 @@ function GamesByName() {
 
 
     return (
-        <>
+        <div>
             <div className="bars">
                 <form
                     onSubmit={fetchGameByNameContain}>
@@ -46,11 +46,10 @@ function GamesByName() {
                         nu zoeken
                     </button>
                 </form>
-            </div>
+
             {gamesData && gamesData.map((item) => <GameSummary game={item} key={item.id}/>)}
-
-
-        </>
+            </div>
+        </div>
     );
 }
 

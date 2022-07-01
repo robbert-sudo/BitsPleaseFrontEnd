@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 <<<<<<< HEAD:src/pages/gamepage/Games.js
-import GameSummary from "../components/GameSummary";
+import GameSummary from "../../components/GameSummary";
 =======
-import GameSummary from "../components/GameSummary";
-import GamesApi from "../api's/GamesApi";
+import GameSummary from "../../components/GameSummary";
+import GamesApi from "../../api\'s/GamesApi";
 >>>>>>> f9581ef2384fcfec260714d09dcf55e054530ae8:src/pages/Games.js
 
 import "./Games.css";

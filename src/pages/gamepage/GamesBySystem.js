@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import GameSummary from "../components/GameSummary";
+import GameSummary from "../../components/GameSummary";
 
 function GamesBySystem() {
     const [systemName, setSystemName] = useState(null);

@@ -1,4 +1,4 @@
-import GamesByName from "../pages/GamesByName";
+import GamesByName from "../pages/gamepage/GamesByName";
 import ShallowRenderer from 'react-test-renderer/shallow';
 import SystemButton from "../components/SystemButton";
 

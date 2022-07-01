@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import GameSummary from "../components/GameSummary";
+import GameSummary from "../../components/GameSummary";
 
 import "./Games.css";
 

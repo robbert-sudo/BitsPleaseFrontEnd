@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {fetchGameByNameContain} from '../pages/GamesByName.js';
+import {fetchGameByNameContain} from '../pages/gamepage/GamesByName.js';
 
 jest.mock('axios');
 

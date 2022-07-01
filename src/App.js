@@ -8,18 +8,18 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import './App.css';
 import {AuthContext} from "./context/AuthContext";
-import Games from "./pages/Games";
-import UploadGame from "./pages/UploadGame";
+import Games from "./pages/gamepage/Games";
+import UploadGame from "./pages/gamepage/UploadGame";
 import CheckOut from "./pages/CheckOut";
-import GamesLandingPage from "./pages/GamesLandingPage";
-import GamesByName from "./pages/GamesByName";
-import FullGame from "./pages/FullGame";
-import AdminPage from "./pages/AdminPage";
+import GamesLandingPage from "./pages/gamepage/GamesLandingPage";
+import GamesByName from "./pages/gamepage/GamesByName";
+import FullGame from "./pages/gamepage/FullGame";
+import AdminPage from "./pages/adminpage/AdminPage";
 import RatingPage from "./pages/RatingPage";
-import AdminPageUsers from "./pages/AdminPageUsers";
+import AdminPageUsers from "./pages/adminpage/AdminPageUsers";
 import EditProfile from "./pages/EditProfile";
-import AdminPageDeletedUsers from "./pages/AdminPageDeletedUsers";
-import GamesBySystem from "./pages/GamesBySystem";
+import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
+import GamesBySystem from "./pages/gamepage/GamesBySystem";
 
 function App() {
     const { isAuth } = useContext(AuthContext);

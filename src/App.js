@@ -22,7 +22,7 @@ import AdminPageDeletedUsers from "./pages/AdminPageDeletedUsers";
 import GamesBySystem from "./pages/GamesBySystem";
 
 function App() {
-    const isAuth = useContext(AuthContext);
+    const { isAuth } = useContext(AuthContext);
 
     const { admin } = useContext(AuthContext);
 
@@ -47,22 +47,21 @@ function App() {
                         <SignUp/>
                     </Route>
                     <Route exact path="/games">
-                        <Games/>
+                        {isAuth ? <Games/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/uploadgame">
-                        <UploadGame/>
+                        {isAuth ? <UploadGame/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/checkout">
                         <CheckOut/>
                     </Route>
                     <Route exact path="/gameslandingpage">
-                        <GamesLandingPage/>
+                        {isAuth ? <GamesLandingPage/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/gamesbyname">
-                        <GamesByName/>
-                    </Route>
+                        {isAuth ? <GamesByName/> : <Redirect to="/"/> }                    </Route>
                     <Route path="/fullgamepage/:gameId">
-                        <FullGame/>
+                        { isAuth ? <FullGame/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/adminpage"
                            render={()=> (admin ? <AdminPage/> : <Redirect to={""} /> )}
@@ -88,7 +87,7 @@ function App() {
                         <EditProfile/>
                     </Route>
                     <Route exact path="/gamesbysystem">
-                        <GamesBySystem/>
+                        { isAuth ? <GamesBySystem/> : <Redirect to="/"/> }
                     </Route>
                 </Switch>
             </div>

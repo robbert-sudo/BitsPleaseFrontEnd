@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import GameSummary from "../components/GameSummary";
+import GamesApi from "../api's/GamesApi";
 
 import "./Games.css";
 
@@ -19,7 +20,7 @@ function Games() {
         async function fetchGamesData() {
             const token = localStorage.getItem('token');
             try {
-                const result = await axios.get(`http://localhost:8080/games`, {
+                const result = await axios.get(GamesApi, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`

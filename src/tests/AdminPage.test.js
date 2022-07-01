@@ -1,4 +1,4 @@
-import AdminPage from "../pages/adminpage/AdminPage";
+import AdminPage from "../pages/AdminPage";
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from "react";
 

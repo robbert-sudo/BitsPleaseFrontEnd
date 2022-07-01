@@ -8,21 +8,21 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import './App.css';
 import {AuthContext} from "./context/AuthContext";
-import Games from "./pages/gamepage/Games";
-import UploadGame from "./pages/gamepage/UploadGame";
+import Games from "./pages/Games";
+import UploadGame from "./pages/UploadGame";
 import CheckOut from "./pages/CheckOut";
-import GamesLandingPage from "./pages/gamepage/GamesLandingPage";
-import GamesByName from "./pages/gamepage/GamesByName";
+import GamesLandingPage from "./pages/GamesLandingPage";
+import GamesByName from "./pages/GamesByName";
 import FullGame from "./pages/FullGame";
-import AdminPage from "./pages/adminpage/AdminPage";
+import AdminPage from "./pages/AdminPage";
 import RatingPage from "./pages/RatingPage";
-import AdminPageUsers from "./pages/adminpage/AdminPageUsers";
+import AdminPageUsers from "./pages/AdminPageUsers";
 import EditProfile from "./pages/EditProfile";
-import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
-import GamesBySystem from "./pages/gamepage/GamesBySystem";
+import AdminPageDeletedUsers from "./pages/AdminPageDeletedUsers";
+import GamesBySystem from "./pages/GamesBySystem";
 
 function App() {
-    const isAuth = useContext(AuthContext);
+    const { isAuth } = useContext(AuthContext);
 
     const { admin } = useContext(AuthContext);
 
@@ -47,22 +47,21 @@ function App() {
                         <SignUp/>
                     </Route>
                     <Route exact path="/games">
-                        <Games/>
+                        {isAuth ? <Games/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/uploadgame">
-                        <UploadGame/>
+                        {isAuth ? <UploadGame/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/checkout">
                         <CheckOut/>
                     </Route>
                     <Route exact path="/gameslandingpage">
-                        <GamesLandingPage/>
+                        {isAuth ? <GamesLandingPage/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/gamesbyname">
-                        <GamesByName/>
-                    </Route>
+                        {isAuth ? <GamesByName/> : <Redirect to="/"/> }                    </Route>
                     <Route path="/fullgamepage/:gameId">
-                        <FullGame/>
+                        { isAuth ? <FullGame/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/adminpage"
                            render={()=> (admin ? <AdminPage/> : <Redirect to={""} /> )}
@@ -88,7 +87,7 @@ function App() {
                         <EditProfile/>
                     </Route>
                     <Route exact path="/gamesbysystem">
-                        <GamesBySystem/>
+                        { isAuth ? <GamesBySystem/> : <Redirect to="/"/> }
                     </Route>
                 </Switch>
             </div>

@@ -20,6 +20,7 @@ import AdminPageUsers from "./pages/adminpage/AdminPageUsers";
 import EditProfile from "./pages/EditProfile";
 import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
 import GamesBySystem from "./pages/gamepage/GamesBySystem";
+import MyGames from "./pages/gamepage/MyGames";
 
 function App() {
     const { isAuth } = useContext(AuthContext);
@@ -57,6 +58,9 @@ function App() {
                     </Route>
                     <Route exact path="/gameslandingpage">
                         {isAuth ? <GamesLandingPage/> : <Redirect to="/"/> }
+                    </Route>
+                    <Route exact path="/mygames/:uploader">
+                        {isAuth ? <MyGames/> : <Redirect to="/"/> }
                     </Route>
                     <Route exact path="/gamesbyname">
                         {isAuth ? <GamesByName/> : <Redirect to="/"/> }                    </Route>

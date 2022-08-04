@@ -29,6 +29,7 @@ function SignUp() {
         toggleLoading(true);
 
         try {
+            console.log(password);
             await axios.post('http://localhost:8080/user', {
                 "username": username,
                 "password": password,

@@ -1,27 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
-
 import GameSummary from "../../components/GameSummary";
-import GamesApi from "../../api's/GamesApi";
 
-import "./Games.css";
+import {useParams} from "react-router-dom";
 
+function MyGames() {
 
-function Games() {
-
-
+    const {uploader} = useParams();
     const [gamesData, setGamesData] = useState([]);
-    // const source = axios.CancelToken.source();
 
 
     useEffect(() => {
 
         const source = axios.CancelToken.source();
 
-        async function fetchGamesData() {
+        async function fetchMyGameData() {
             const token = localStorage.getItem('token');
             try {
-                const result = await axios.get(GamesApi, {
+                const result = await axios.get(`http://localhost:8080/games/uploader/${uploader}`, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`
@@ -29,29 +25,24 @@ function Games() {
                     cancelToken: source.token,
                 });
 
-                console.log(result.data.length);
-                console.log(result.data[0]);
                 setGamesData(result.data);
-                // console.log(gameData);
-
             } catch (e) {
                 console.error(e);
             }
         }
 
-        fetchGamesData();
+        fetchMyGameData();
     }, [])
-
-
 
     const mapGameData = gamesData && gamesData.map((gameProp, pos) =>
         <GameSummary game={gameProp} key={pos}/>)
 
     return (
         <>
-                    {mapGameData}
+            {mapGameData}
         </>
     );
+
 }
 
-export default Games;
+export default MyGames;

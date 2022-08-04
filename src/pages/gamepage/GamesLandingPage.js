@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import {useHistory} from "react-router-dom";
 import './GamesLandingPage.css';
+import {AuthContext} from "../../context/AuthContext";
 
 function GamesLandingPage() {
 
+    const {user} = useContext(AuthContext);
     const history = useHistory()
 
 
@@ -34,7 +36,11 @@ function GamesLandingPage() {
                 zoek game op systeem
             </button>
 
-
+            <button className="searchbutton"
+                    type="button"
+                    onClick={() => history.push(`mygames/${user.user_id}`)}>
+                mijn geuploade games
+            </button>
 
         </>
     );

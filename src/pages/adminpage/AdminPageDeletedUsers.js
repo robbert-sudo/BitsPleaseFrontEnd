@@ -7,9 +7,7 @@ function AdminPageDeletedUsers() {
     const [userData, toggleUserData] = useState([]);
     const [deleted, toggleDeleted] = useState(false);
 
-
     useEffect(()=> {
-
 
         async function fetchDeletedUsers() {
             toggleDeleted(false);
@@ -59,10 +57,10 @@ function AdminPageDeletedUsers() {
 
 
     const mapUserData = userData && userData.map((user, pos) =>
-    <div className="deletedusers" key={pos}>
-        <h3>name: {user.username}</h3>
-        <h3>user_id: {user.user_id}</h3>
-        <h3>enabled: { (user.enabled) ? "true" : "false" }</h3>
+    <article className="deletedusers" key={pos}>
+        <p>name: {user.username}</p>
+        <p>user_id: {user.user_id}</p>
+        <p>enabled: { (user.enabled) ? "true" : "false" }</p>
         <button
             type="button"
             className="deletebutton"
@@ -70,11 +68,14 @@ function AdminPageDeletedUsers() {
         >
             verwijder deze gebruiker
         </button>
-    </div>
+    </article>
     )
 
     return (
         <>
+            <header className="disabled accounts">
+                disabled accounts
+            </header>
             {mapUserData}
         </>
     );

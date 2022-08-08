@@ -1,13 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import './GameSummary.css'
 import {useHistory} from "react-router-dom";
-
-// import CheckOut from "../pages/CheckOut";
 
 
 function GameSummary({game}, key) {
 
     const history = useHistory();
+
+
 
     function goToFullGame() {
         history.push(`/fullgamepage/${game.id}`);
@@ -35,7 +35,6 @@ function GameSummary({game}, key) {
                     <h1>&euro;{(game.price).toFixed(2)}</h1>
                 </div>
             </div>
-
 
         </>
     );

@@ -13,7 +13,7 @@ function TopMenu() {
 
     return (
 
-        <nav>
+        <div className="topMenu">
             <Link to="/">
                 <span className="logo-container">
                     <img src={logo} alt="logo"/>
@@ -33,14 +33,12 @@ function TopMenu() {
 
 
             {admin ?
-                <>
                     <button className="button"
                             type="button"
                             onClick={() => history.push("/adminpage")}
                     >
                         admin page
                     </button>
-                </>
                 : <>
 
                 </>}
@@ -80,7 +78,7 @@ function TopMenu() {
                         Registreren
                     </button>
                 </div>}
-        </nav>
+        </div>
     );
 }
 

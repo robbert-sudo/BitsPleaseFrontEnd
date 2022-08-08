@@ -27,19 +27,19 @@ function AdminPageUsers() {
                 console.error(e);
             }
         }
+
         fetchUserData();
-    },[])
+    }, [])
 
 
     return (
         <>
-            {userData && userData.map((userData, pos)=>
-                <div key={pos}>
-                    <h3>user_id: {userData.user_id}</h3>
-            <h5>username: {userData.username}</h5>
-                </div>
+            {userData && userData.map((userData, pos) =>
+                <article key={pos}>
+                    <p>user_id: {userData.user_id}</p>
+                    <p>username: {userData.username}</p>
+                </article>
             )}
-
         </>
     );
 

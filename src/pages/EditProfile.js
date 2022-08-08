@@ -13,7 +13,7 @@ function EditProfile() {
         logout();
 
         try {
-            await axios.patch(`http://localhost:8080/user/${user.user_id}`, {enabled: false}, {
+            await axios.patch(`http://localhost:8080/user/delete/${user.user_id}`, {enabled: false}, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

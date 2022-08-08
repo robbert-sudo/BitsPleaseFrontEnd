@@ -6,7 +6,7 @@ import {AuthContext} from "../../context/AuthContext";
 function GamesLandingPage() {
 
     const {user} = useContext(AuthContext);
-    const history = useHistory()
+    const history = useHistory();
 
 
     return (
@@ -32,7 +32,7 @@ function GamesLandingPage() {
             </button>
             <button className="button"
                     type="button"
-                    onClick={()=> history.push("gamesbysystem")}>
+                    onClick={() => history.push("gamesbysystem")}>
                 zoek game op systeem
             </button>
 

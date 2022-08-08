@@ -34,15 +34,19 @@ function MyGames() {
         fetchMyGameData();
     }, [])
 
+    console.log(gamesData);
     const mapGameData = gamesData && gamesData.map((gameProp, pos) =>
-        <GameSummary game={gameProp} key={pos}/>)
+        <>
+            <GameSummary game={gameProp} key={pos}/>
+
+        </>
+    )
 
     return (
         <>
             {mapGameData}
         </>
     );
-
 }
 
 export default MyGames;

@@ -51,7 +51,7 @@ function FullGame() {
             const token = localStorage.getItem('token');
             if (gameData) {
                 try {
-                    const average = await axios.get(`http://localhost:8080/sellerratings/getaverage/${gameData.uploader_id}`, {
+                    const average = await axios.get(`http://localhost:8080/sellerratings/getaverage/${gameData.uploader}`, {
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`
@@ -75,7 +75,7 @@ function FullGame() {
 
 
     function goToRating() {
-        history.push(`/rating/${gameData.uploader_id}`);
+        history.push(`/rating/${gameData.uploader}`);
     }
 
 

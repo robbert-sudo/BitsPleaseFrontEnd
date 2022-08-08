@@ -37,6 +37,7 @@ function SignUp() {
             }, {
                 cancelToken: source.token,
             });
+            console.log(password);
             history.push("signin");
         } catch (e) {
             console.error(e);

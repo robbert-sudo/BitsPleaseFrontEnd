@@ -3,16 +3,17 @@ import {Link, useHistory} from "react-router-dom";
 
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import {AuthContext} from "../context/AuthContext";
+import {AuthContext} from "../../context/AuthContext";
 
 
 function Profile() {
     const history = useHistory();
     const {user} = useContext(AuthContext);
+
     const [admini, toggleAdmini] = useState(false);
     const [profileData, setProfileData] = useState({
         username: null,
-        enabled: null,
+        email: null,
         authorities: [],
         user_id: null,
     });
@@ -55,7 +56,7 @@ function Profile() {
                 console.log(result);
                 setProfileData({
                     username: result.data.username,
-                    enabled: result.data.enabled,
+                    email: result.data.email,
                     authorities: result.data.authorities,
                     user_id: result.data.user_id,
                 });
@@ -91,19 +92,28 @@ function Profile() {
                     <h2>Gegevens</h2>
                     <p><strong>Gebruikersnaam:</strong> {profileData.username} </p>
                     <p><strong>User_id: </strong> {profileData.user_id} </p>
+                    <p><strong>Email: </strong> {profileData.email}</p>
                     <p><strong>Authorities: </strong></p>
                     {authorityList}
                 </section>
                 <p>Terug naar de <Link to="/">Homepagina</Link></p>
             </div>
-
-            {!admini ? <>
             <button className="button"
                     type="button"
-                    onClick={() => history.push("deleteprofile")}
+                    onClick={() => history.push("profile/edit")}
             >
-                Mijn profiel verwijderen
-            </button> </> : <> </> }
+                mijn profiel aanpassen
+            </button>
+
+
+            {!admini ? <>
+                <button className="button"
+                        type="button"
+                        onClick={() => history.push("deleteprofile")}
+                >
+                    Mijn profiel verwijderen
+                </button>
+            </> : <> </>}
         </>
     );
 

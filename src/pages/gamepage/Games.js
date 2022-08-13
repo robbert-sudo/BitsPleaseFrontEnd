@@ -43,7 +43,6 @@ function Games() {
     }, [])
 
 
-
     const mapGameData = gamesData && gamesData.map((gameProp, pos) =>
         <GameSummary game={gameProp} key={pos}/>)
 

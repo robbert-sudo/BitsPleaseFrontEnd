@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import './AdminPageUsers.css';
 
 function AdminPageUsers() {
     const [userData, setUserData] = useState();

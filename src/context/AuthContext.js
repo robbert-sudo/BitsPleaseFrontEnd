@@ -49,7 +49,7 @@ function AuthContextProvider({children}) {
         console.log(decoded.sub);
 
         // op basis van die informatie kunnen we de gebruikersgegevens ophalen via een GET-request
-        // ... gaan jullie zelf doen!
+
 
 
         // gebruikersdata in de state plaatsen
@@ -76,6 +76,7 @@ function AuthContextProvider({children}) {
         history.push("/");
     }
 
+    //checkt of user admin-rechten heeft. dit wordt meegegeven aan de context data
     function adminCheck(result) {
         let admin = false;
         if (result) {

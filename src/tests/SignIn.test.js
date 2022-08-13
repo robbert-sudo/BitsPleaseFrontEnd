@@ -1,4 +1,4 @@
-import handleSubmit from "../pages/SignIn";
+import handleSubmit from "../pages/signIn/SignIn";
 
 test("SignIn", async () => {
     //arrange

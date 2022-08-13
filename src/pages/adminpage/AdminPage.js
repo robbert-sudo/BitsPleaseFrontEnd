@@ -1,6 +1,7 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-
+import MenuButton from "../../components/MenuButton";
+import './AdminPage.css';
 
 // voor elke rol toegankelijk is niet de bedoeling
 
@@ -12,17 +13,23 @@ function AdminPage() {
 
     return (
         <>
-            <button
-                onClick={()=> history.push("/adminpage/users")}
+            <MenuButton clickAction={() => history.push("/adminpage/users")} text="Bekijk alle gebruikers" />
 
-            >
-                Bekijk alle gebruikers
-            </button>
-            <button
-                onClick={()=> history.push("/adminpage/deletedusers")}
-            >
-                Verwijder gebruiker
-            </button>
+            {/*<button*/}
+            {/*    onClick={()=> history.push("/adminpage/users")}*/}
+
+            {/*>*/}
+            {/*    Bekijk alle gebruikers*/}
+            {/*</button>*/}
+
+            <MenuButton clickAction={() => history.push("/adminpage/deletedusers")} text="Verwijder gebruiker" />
+
+
+            {/*<button*/}
+            {/*    onClick={()=> history.push("/adminpage/deletedusers")}*/}
+            {/*>*/}
+            {/*    Verwijder gebruiker*/}
+            {/*</button>*/}
         </>
 
     );

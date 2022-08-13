@@ -1,0 +1,9 @@
+.menu-button {
+    border-radius: 4px;
+    /*border: none;*/
+    color: white;
+    padding: 8px 16px;
+    background-color: ghostwhite;
+    color: black;
+    font-weight: bold;
+}

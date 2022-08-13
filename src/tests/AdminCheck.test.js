@@ -1,10 +1,15 @@
-const {adminCheck}  = require("../pages/AdminCheck");
-// import {adminCheck} from "../pages/AdminCheck";
+const {login, AuthContext}  = require("../context/AuthContext");
+
+import {adminCheck} from "../pages/AdminCheck";
+
+const {useState, useContext} = require("react");
+const {login} = useContext(AuthContext);
+
+
+
  test("adminCheck geeft true terug", ()=> {
 
     //arrange
-
-
 
     const user = {
         "user_id": 1,

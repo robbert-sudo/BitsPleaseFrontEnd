@@ -4,6 +4,8 @@ import {useHistory, Link} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 import './TopMenu.css'
 import SystemButton from "./SystemButton";
+import CustomButton from "./MenuButton";
+import MenuButton from "./MenuButton";
 
 function TopMenu() {
     const history = useHistory();
@@ -21,7 +23,10 @@ function TopMenu() {
             </Link>
             <div className="systemchoises">
 
-                <SystemButton text="GAMEBOY/ADVANCE"/>
+
+                {/*systembutton heeft geen clickAction*/}
+                <MenuButton className="system-button" text="GAMEBOY/ADVANCE" />
+                {/*<SystemButton text="GAMEBOY/ADVANCE"/>*/}
                 <SystemButton text="NES"/>
                 <SystemButton text="SNES"/>
                 <SystemButton text="GAMECUBE"/>
@@ -33,50 +38,40 @@ function TopMenu() {
 
 
             {admin ?
-                    <button className="button"
-                            type="button"
-                            onClick={() => history.push("/adminpage")}
-                    >
-                        admin page
-                    </button>
+                <MenuButton clickAction={() => history.push("/adminpage")} text="admin page" />
+
+
+                //     <button className="button"
+                //             type="button"
+                //             onClick={() => history.push("/adminpage")}
+                //     >
+                //         admin page
+                //     </button>
+
+
                 : <>
 
                 </>}
             {isAuth ?
                 <div>
-                    <button className="button"
-                            type="button"
-                            onClick={logout}>
-                        Log uit
-                    </button>
 
-                    <button className="button"
-                            type="button"
-                            onClick={() => history.push("/gameslandingpage")}
-                    >
-                        Ga naar games
-                    </button>
-                    <button className="button"
-                            type="button"
-                            onClick={() => history.push("/profile")}
-                    >
-                        mijn profiel
-                    </button>
+                    <MenuButton clickAction={logout} text="Log uit" />
+
+                    {/*<button className="button"*/}
+                    {/*        type="button"*/}
+                    {/*        onClick={logout}>*/}
+                    {/*    Log uit*/}
+                    {/*</button>*/}
+
+                    <MenuButton clickAction={()=> history.push("/gameslandingpage")} text="Ga naar games" />
+                    <MenuButton clickAction={() => history.push("/profile")} text="Mijn profiel" />
                 </div>
                 :
                 <div>
-                    <button
-                        type="button"
-                        onClick={() => history.push("/signin")}
-                    >
-                        Log in
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => history.push('/signup')}
-                    >
-                        Registreren
-                    </button>
+
+                    <MenuButton clickAction={() => history.push("/signin")} text="Log in" />
+                    <MenuButton clickAction={() => history.push("/signup")} text="Registreren" />
+
                 </div>}
         </div>
     );

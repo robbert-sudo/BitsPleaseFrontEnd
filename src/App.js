@@ -4,18 +4,17 @@ import {Switch, Route, Redirect} from 'react-router';
 import TopMenu from './components/TopMenu';
 import Profile from "./pages/profilepage/Profile";
 import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import SignIn from "./pages/signIn/SignIn";
+import SignUp from "./pages/signUp/SignUp";
 import './App.css';
 import {AuthContext} from "./context/AuthContext";
 import Games from "./pages/gamepage/Games";
 import UploadGame from "./pages/gamepage/UploadGame";
-import CheckOut from "./pages/CheckOut";
 import GamesLandingPage from "./pages/gamepage/GamesLandingPage";
 import GamesByName from "./pages/gamepage/GamesByName";
 import FullGame from "./pages/gamepage/FullGame";
 import AdminPage from "./pages/adminpage/AdminPage";
-import RatingPage from "./pages/RatingPage";
+import RatingPage from "./pages/rating/RatingPage";
 import AdminPageUsers from "./pages/adminpage/AdminPageUsers";
 import EditProfile from "./pages/EditProfile";
 import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
@@ -56,9 +55,6 @@ function App() {
                     </Route>
                     <Route exact path="/uploadgame">
                         {isAuth ? <UploadGame/> : <Redirect to="/"/>}
-                    </Route>
-                    <Route exact path="/checkout">
-                        <CheckOut/>
                     </Route>
                     <Route exact path="/gameslandingpage">
                         {isAuth ? <GamesLandingPage/> : <Redirect to="/"/>}

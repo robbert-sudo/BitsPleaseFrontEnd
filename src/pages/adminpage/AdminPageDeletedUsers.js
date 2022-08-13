@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './AdminPageDeletedUsers.css'
+import MenuButton from "../../components/MenuButton";
 
 function AdminPageDeletedUsers() {
 
@@ -61,13 +62,16 @@ function AdminPageDeletedUsers() {
         <p>name: {user.username}</p>
         <p>user_id: {user.user_id}</p>
         <p>enabled: { (user.enabled) ? "true" : "false" }</p>
-        <button
-            type="button"
-            className="deletebutton"
-            onClick={()=> handleDelete(user.username)}
-        >
-            verwijder deze gebruiker
-        </button>
+
+        <MenuButton className="delete-button" clickAction={() => handleDelete(user.username)} text="Verwijder deze gebruiker" />
+
+        {/*<button*/}
+        {/*    type="button"*/}
+        {/*    className="delete-button"*/}
+        {/*    onClick={()=> handleDelete(user.username)}*/}
+        {/*>*/}
+        {/*    verwijder deze gebruiker*/}
+        {/*</button>*/}
     </article>
     )
 

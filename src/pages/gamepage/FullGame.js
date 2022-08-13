@@ -10,8 +10,6 @@ function FullGame() {
     const {gameId} = useParams();
     const [gameData, setGameData] = useState();
     const [userAverage, toggleUserAverage] = useState();
-    // const source = axios.CancelToken.source();
-
 
     useEffect(() => {
 

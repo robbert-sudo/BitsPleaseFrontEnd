@@ -36,10 +36,9 @@ function MyGames() {
 
     console.log(gamesData);
     const mapGameData = gamesData && gamesData.map((gameProp, pos) =>
-        <>
+
             <GameSummary game={gameProp} key={pos}/>
 
-        </>
     )
 
     return (

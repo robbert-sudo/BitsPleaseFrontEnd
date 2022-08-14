@@ -3,6 +3,7 @@ import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import "./UploadGame.css";
+import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContainer";
 
 function UploadGame() {
     //state voor het formulier
@@ -95,6 +96,7 @@ function UploadGame() {
 
     return (
         <>
+            <GamePageButtonsContainer />
             <h1>Upload game: </h1>
             <form className="gameuploaden"
                   onSubmit={handleGameUpload}>

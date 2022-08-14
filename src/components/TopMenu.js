@@ -63,7 +63,7 @@ function TopMenu() {
                     {/*    Log uit*/}
                     {/*</button>*/}
 
-                    <MenuButton clickAction={()=> history.push("/gameslandingpage")} text="Ga naar games" />
+                    <MenuButton clickAction={()=> history.push("/gamesbyname")} text="Ga naar games" />
                     <MenuButton clickAction={() => history.push("/profile")} text="Mijn profiel" />
                 </div>
                 :

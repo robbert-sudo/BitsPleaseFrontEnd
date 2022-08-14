@@ -3,9 +3,12 @@ import './FullGame.css';
 import {useHistory, useParams} from "react-router-dom";
 import axios from "axios";
 import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContainer";
+import {Card} from "reactstrap";
 
 
 function FullGame() {
+
+
 
     const history = useHistory()
     const {gameId} = useParams();
@@ -87,28 +90,29 @@ function FullGame() {
         <>
             <GamePageButtonsContainer/>
             {gameData &&
-            <div className="fullgame"
+            <Card className="fullgame"
             >
-                <div className="im">
+                <figure className="container">
                     {gameData.image && <img className="fullgamepic" src={gameData.image} alt="gamepicture"/>}
-                </div>
-                <div className="gameinfo">
+                </figure>
+                <section className="gameinfo">
                     <h1>{gameData.name}</h1>
-                    <h5>Id: {gameData.id}</h5>
-                    <h5>System: {gameData.system}</h5>
-                    <h5>Developer: {gameData.developer}</h5>
-                </div>
-                <div className="sellerinfo">
-                    <h5>Uploader: {gameData.uploader_name}</h5>
-                    <h1>&euro; {(gameData.price).toFixed(2)}</h1>
-                    <h6>gemiddelde rating van deze gebruiker</h6>
-                    <h2>{userAverage}/10</h2>
+                    <p>Id: {gameData.id}</p>
+                    <p>System: {gameData.system}</p>
+                    <p>Developer: {gameData.developer}</p>
+                    <p className="price">prijs: &euro; {(gameData.price).toFixed(2)}</p>
+                </section>
+                <section className="sellerinfo">
+                    <p>Uploader: {gameData.uploader_name}</p>
+
+                    <p>gemiddelde rating van deze gebruiker</p>
+                    <p>{userAverage}/10</p>
                     <button className="votebutton"
                             onClick={goToRating}
                     >
                         stem op deze gebruiker</button>
-                </div>
-            </div>}
+                </section>
+            </Card>}
         </>
     );
 }

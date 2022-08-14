@@ -1,7 +1,12 @@
+
 .fullgame {
     display: flex;
 }
 
+.container {
+    margin: 1px;
+    align-self: center;
+}
 
 .fullgamepic {
     height: 300px;
@@ -19,7 +24,10 @@
     background-color: green;
 }
 
-
+.price {
+    font-size: 20px;
+    background-color: transparent;
+}
 
 /*.im {*/
 /*    flex: 25%;*/

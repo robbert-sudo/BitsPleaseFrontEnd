@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import './FullGame.css';
 import {useHistory, useParams} from "react-router-dom";
 import axios from "axios";
+import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContainer";
 
 
 function FullGame() {
@@ -84,6 +85,7 @@ function FullGame() {
     return (
 
         <>
+            <GamePageButtonsContainer/>
             {gameData &&
             <div className="fullgame"
             >

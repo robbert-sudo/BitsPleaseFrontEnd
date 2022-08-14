@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import GameSummary from "../../components/GameSummary";
+import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContainer";
 
 function GamesBySystem() {
     const [systemName, setSystemName] = useState(null);
@@ -28,6 +29,7 @@ function GamesBySystem() {
 
     return (
         <>
+            <GamePageButtonsContainer />
             <div className="bars">
         <form
             onSubmit={fetchGameBySystem}>

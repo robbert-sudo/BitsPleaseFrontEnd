@@ -1,11 +1,11 @@
 import React from "react";
 import './MenuButton.css'
 
-function MenuButton({className, clickAction, text}) {
+function MenuButton({className, buttonType, clickAction, text}) {
 
     return (
         <button className={className}
-                type="button"
+                type={buttonType}
                 onClick={clickAction}
                 >
             {text}
@@ -17,6 +17,7 @@ function MenuButton({className, clickAction, text}) {
 // toegepast wordt en de className gebruikt wordt in de styling
 MenuButton.defaultProps = {
     className: "menu-button",
+    type: "button",
     clickAction: null
 }
 

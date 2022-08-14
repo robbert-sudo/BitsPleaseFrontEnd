@@ -8,9 +8,8 @@ import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import './App.css';
 import {AuthContext} from "./context/AuthContext";
-import Games from "./pages/gamepage/Games";
+
 import UploadGame from "./pages/gamepage/UploadGame";
-import GamesLandingPage from "./pages/gamepage/GamesLandingPage";
 import GamesByName from "./pages/gamepage/GamesByName";
 import FullGame from "./pages/gamepage/FullGame";
 import AdminPage from "./pages/adminpage/AdminPage";
@@ -21,19 +20,16 @@ import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
 import GamesBySystem from "./pages/gamepage/GamesBySystem";
 import MyGames from "./pages/gamepage/MyGames";
 import ProfileEdit from "./pages/profilepage/ProfileEdit";
-import {BrowserRouter} from "react-router-dom";
 
 function App() {
-    const {isAuth} = useContext(AuthContext);
-
-    const {admin} = useContext(AuthContext);
+    const {isAuth, admin} = useContext(AuthContext);
 
     console.log(admin);
 
 
     return (
         <>
-            <BrowserRouter>
+
             <TopMenu/>
             <div className="content">
                 <Switch>
@@ -52,14 +48,9 @@ function App() {
                     <Route exact path="/signup">
                         <SignUp/>
                     </Route>
-                    <Route exact path="/games">
-                        {isAuth ? <Games/> : <Redirect to="/"/>}
-                    </Route>
+
                     <Route exact path="/uploadgame">
                         {isAuth ? <UploadGame/> : <Redirect to="/"/>}
-                    </Route>
-                    <Route exact path="/gameslandingpage">
-                        {isAuth ? <GamesLandingPage/> : <Redirect to="/"/>}
                     </Route>
                     <Route exact path="/mygames/:uploader">
                         {isAuth ? <MyGames/> : <Redirect to="/"/>}
@@ -93,7 +84,7 @@ function App() {
                     </Route>
                 </Switch>
             </div>
-            </BrowserRouter>
+
         </>
     );
 }

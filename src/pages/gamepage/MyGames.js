@@ -3,6 +3,7 @@ import axios from "axios";
 import GameSummary from "../../components/GameSummary";
 
 import {useParams} from "react-router-dom";
+import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContainer";
 
 function MyGames() {
 
@@ -43,6 +44,7 @@ function MyGames() {
 
     return (
         <>
+            <GamePageButtonsContainer />
             {mapGameData}
         </>
     );

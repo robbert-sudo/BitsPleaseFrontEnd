@@ -12,16 +12,15 @@ function GameSummary({game}, key) {
 
 
     return (
-            <article className="gamelist"
+            <article className="game-list"
                  onClick={goToFullGame}
                  key={key}
             >
-                {/*<div className="empty"></div>*/}
+
                 <figure className="imageContainer">
                     {game.image && <img className="gamePic" src={game.image} alt="gamepicture"/>}
                 </figure>
-                {/*<FullGame game={game}/>*/}
-                {/*<h2>{game.name} </h2>*/}
+
                 <ul className="gameStats">
                     <ol>{game.name}</ol>
                     <ol>{game.system}</ol>

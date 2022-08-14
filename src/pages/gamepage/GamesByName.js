@@ -52,6 +52,7 @@ function GamesByName() {
                 cancelToken: source.token,
             });
             setGamesData(result.data);
+            console.log(gamesData);
         } catch (e) {
             console.error(e);
         }
@@ -66,7 +67,9 @@ function GamesByName() {
             <div className="searchbar-container">
                 <SearchBarWithButton onsubmitAction={fetchGameByNameContain} onChangeAction={(e) => toggleSearchName(e.target.value)} placeHolderText="zoek game op naam"/>
             </div>
+
             {gamesData && gamesData.map((item) => <GameSummary game={item} key={item.id}/>)}
+
         </>
     );
 }

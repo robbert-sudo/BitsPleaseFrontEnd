@@ -6,8 +6,6 @@ import axios from "axios";
 function SignIn() {
     const [username, setUsername] = useState("");
     const [password, togglePassword] = useState("");
-    const [error, toggleError] = useState(false);
-
     const {login} = useContext(AuthContext);
     const source = axios.CancelToken.source();
 
@@ -24,7 +22,6 @@ function SignIn() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        toggleError(false);
 
         try {
             const result = await axios.post('http://localhost:8080/authenticate', {
@@ -33,18 +30,12 @@ function SignIn() {
             }, {
                 cancelToken: source.token,
             });
-            //log het resultaat in de console
-            console.log(result.data.jwt);
-            console.log(result);
-
-            // geef de jwt token aan de login-functie van de context mee
+                   // geef de jwt token aan de login-functie van de context mee
 
 
             login(result.data.jwt);
         } catch (e) {
             console.error(e);
-            toggleError(true);
-            console.log(error);
         }
     }
 

@@ -23,7 +23,6 @@ function AdminPageDeletedUsers() {
                     cancelToken: source.token,
                 });
 
-                console.log(result.data);
                 toggleUserData(result.data);
 
             } catch (e) {
@@ -65,13 +64,6 @@ function AdminPageDeletedUsers() {
 
         <MenuButton className="delete-button" clickAction={() => handleDelete(user.username)} text="Verwijder deze gebruiker" />
 
-        {/*<button*/}
-        {/*    type="button"*/}
-        {/*    className="delete-button"*/}
-        {/*    onClick={()=> handleDelete(user.username)}*/}
-        {/*>*/}
-        {/*    verwijder deze gebruiker*/}
-        {/*</button>*/}
     </article>
     )
 

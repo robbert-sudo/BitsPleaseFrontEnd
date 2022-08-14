@@ -15,7 +15,7 @@ import FullGame from "./pages/gamepage/FullGame";
 import AdminPage from "./pages/adminpage/AdminPage";
 import RatingPage from "./pages/rating/RatingPage";
 import AdminPageUsers from "./pages/adminpage/AdminPageUsers";
-import EditProfile from "./pages/EditProfile";
+import EditProfile from "./pages/profilepage/EditProfile";
 import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
 import GamesBySystem from "./pages/gamepage/GamesBySystem";
 import MyGames from "./pages/gamepage/MyGames";
@@ -23,9 +23,6 @@ import ProfileEdit from "./pages/profilepage/ProfileEdit";
 
 function App() {
     const {isAuth, admin} = useContext(AuthContext);
-
-    console.log(admin);
-
 
     return (
         <>

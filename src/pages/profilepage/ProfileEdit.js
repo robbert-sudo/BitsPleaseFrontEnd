@@ -1,20 +1,16 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {useHistory} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
 
 function ProfileEdit() {
 
-    const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const history = useHistory();
-    const {logout} = useContext(AuthContext);
+
 
     const source = axios.CancelToken.source();
-    // const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    // const [password, togglePassword] = useState("");
     const [profileData, setProfileData] = useState({
         username: null,
         email: null,
@@ -57,18 +53,7 @@ function ProfileEdit() {
 
     async function handleEditSubmit(e) {
         e.preventDefault();
-        toggleError(false);
-        toggleLoading(true);
         const token = localStorage.getItem('token');
-
-        // if(!username) {
-        //     setUsername(profileData.username);
-        // }
-        //
-        // if (!email) {
-        //     setEmail(profileData.email);
-        // }
-
 
         try {
             await axios.patch(`http://localhost:8080/user/2`, {
@@ -88,14 +73,10 @@ function ProfileEdit() {
 
         } catch (e) {
             console.error(e);
-            toggleError(true);
         }
         toggleLoading(false);
     }
 
-    // return function cleanup() {
-    //     source.cancel();
-    // }
 
     return (
         <>
@@ -104,13 +85,7 @@ function ProfileEdit() {
                   onSubmit={handleEditSubmit}>
 
                 <p>Invoervelden</p>
-                {/*<input className="reginput"*/}
-                {/*       type="text"*/}
-                {/*       name="username"*/}
-                {/*       onChange={(e) => setUsername(e.target.value)}*/}
-                {/*       placeholder={profileData.username}*/}
-                {/*/>*/}
-                <input className="reginput"
+                          <input className="reginput"
                        type="text"
                        name="email"
                        onChange={(e) => setEmail(e.target.value)}

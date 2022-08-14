@@ -72,6 +72,9 @@ function FullGame() {
     }, [gameData])
 
 
+
+
+
     function goToRating() {
         history.push(`/rating/${gameData.uploader}`);
     }

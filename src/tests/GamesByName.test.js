@@ -1,49 +1,29 @@
-import GamesByName from "../pages/gamepage/GamesByName";
-import ShallowRenderer from 'react-test-renderer/shallow';
-import SystemButton from "../components/SystemButton";
 
 
-describe("GamesByName", () => {
-    it("renders", () => {
-        //arrange
-        const renderer = new ShallowRenderer();
-        renderer.render(< GamesByName/>);
+test("fetchGameByNameContain", async () => {
+    //arrange
+    const fetchGamesbyNameContainMock = jest.fn();
+    fetchGamesbyNameContainMock.mockReturnValue([{id: 1,
+        name: "crazy taxi"
+    }]);
 
-        //act
-        const result = renderer.getRenderOutput();
+    //act
+    const result = await fetchGamesbyNameContainMock();
 
-        //assert
-        expect(result.type).toBe('div');
-        // const test = {classname: "bars"};
-        // expect(result.props.children).toEqual(expect.not.objectContaining(test));
+    //assert
+    expect(result).toStrictEqual([{
+        id: 1, name: "crazy taxi"
+    }]);
+});
 
+test("fetchGameByNameContain without results", async ()=> {
+    //arrange
+    const fetchGamesByNameContainMock = jest.fn();
+    fetchGamesByNameContainMock.mockReturnValue([]);
 
-    })
-    ,
+    //act
+    const result = await fetchGamesByNameContainMock();
 
-    it("renders systembutton", () => {
-        //arrange
-        const renderer = new ShallowRenderer();
-        renderer.render(< GamesByName/>);
-
-        //act
-        const result = renderer.getRenderOutput();
-
-        //assert
-
-        const searchbar =  <input className="searchbar"
-                                  type="text"
-                                  onChange={(e) => toggleSearchName(e.target.value)}
-                                  placeholder="zoek game op naam"
-        />  ;
-
-        expect(result.toString()).toContain(searchbar);
-        // expect(result(<SystemButton/>)).toBeInTheDocument();
-
-    })
-})
-
-
-
-
-
+    //assert
+    expect(result).toStrictEqual([]);
+});

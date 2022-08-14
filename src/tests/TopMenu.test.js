@@ -1,39 +1,22 @@
-import ShallowRenderer from 'react-test-renderer/shallow';
-import TopMenu from "../components/TopMenu";
-import SystemButton from "../components/SystemButton";
+import {useContext} from 'react';
+import {AuthContext} from "../context/AuthContext";
 
 
-describe("GamesByName", () => {
-    it("renders", () => {
-        //arrange
-        const renderer = new ShallowRenderer();
-        renderer.render(< TopMenu/>);
 
-        //act
-        const result = renderer.getRenderOutput();
-
-        //assert
-        expect(result.type).toBe('nav');
-    }),
-
-        it("renders its sub systembuttons", () => {
-            //arrange
-            const renderer = new ShallowRenderer();
-            renderer.render(< TopMenu/>);
-
-            //act
-            const result = renderer.getRenderOutput();
-
-            //assert
-            expect(result.props.children).toBeDefined();
-            // expect(result.props.children).toContain("< SystemButton text = \"GAMEBOY/ADVANCE\" / >");
-            expect(result.props.children.length).toEqual(4);
-            // expect(result.props.children).toEqual(expect.arrayContaining([< React.Fragment / >]));
-        })
+test("kijk of localstorage leeg is na uitloggen voorbereiding",
+    () => {
+        localStorage.setItem('token', "fakeToken");
+        expect(localStorage.getItem('token')).toBe("fakeToken");
+    }
+);
 
 
-})
-
-{/*// expect(result.props.children).toEqual([*/}
-{/*//     <span className="heading">Title</span>,*/}
-{/*//     <Subcomponent foo="bar" />*/}
+// const {logout} = useContext(AuthContext);
+test("kijk of localstorage leeg is na uitloggen",
+    () => {
+        const {logout} = useContext(AuthContext);
+        localStorage.setItem('token', "fakeToken");
+        logout();
+        expect(localStorage.getItem('token')).toBe(null);
+    }
+);

@@ -20,7 +20,7 @@ function GamePageButtonsContainer() {
         <MenuButton className="gamepage-button"
                     clickAction={() => history.push("/gamesbysystem")} text="Zoek op systeem" />
         <MenuButton className="gamepage-button"
-                    clickAction={() => history.push(`mygames/${user.user_id}`)} text="Mijn geuploade games" />
+                    clickAction={() => history.push(`/mygames/${user.user_id}`)} text="Mijn geuploade games" />
         <MenuButton className="gamepagebutton"
                     clickAction={() => history.push("/uploadgame")} text="Game Uploaden" />
     </div>

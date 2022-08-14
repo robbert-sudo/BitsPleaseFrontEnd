@@ -7,12 +7,13 @@ import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContai
 
 function UploadGame() {
     //state voor het formulier
+    const [toBigWarning, toggleToBigWarning] = useState(false);
     const [gameName, setGameName] = useState(null);
     const [system, toggleSystem] = useState("");
     const [developer, setDeveloper] = useState("");
     const [price, setPrice] = useState(null);
     const [postImage, setPostImage] = useState({
-       image: "",
+        image: "",
     });
 
     //state voor functionaliteit
@@ -21,6 +22,7 @@ function UploadGame() {
     const source = axios.CancelToken.source();
 
     useEffect(() => {
+        console.log(user);
         const source = axios.CancelToken.source();
         return function cleanup() {
             source.cancel();
@@ -38,148 +40,154 @@ function UploadGame() {
         console.log(postImage);
         console.log(postImage.image);
 
-        if (gameName !== null) {
-            if (price !== null) {
-                console.log(user.user_id);
-                try {
-                    await axios.post('http://localhost:8080/games', {
-                        "name": gameName,
-                        "system": system,
-                        "developer": developer,
-                        "uploader_id": user.user_id,
-                        "uploader_name": user.username,
-                        "price": price,
-                        "image": postImage.image,
-                    }, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        },
-                        cancelToken: source.token,
-                    });
-                    history.push("games");
-                } catch (e) {
-                    console.error(e);
+
+        if (postImage.image.length <= 250000) {
+                    toggleToBigWarning(false);
+            if (gameName !== null) {
+                if (price !== null) {
+                    console.log(user.user_id);
+                    try {
+                        await axios.post('http://localhost:8080/games', {
+                            "name": gameName,
+                            "system": system,
+                            "developer": developer,
+                            "uploader": user.user_id,
+                            "uploader_name": user.username,
+                            "price": price,
+                            "image": postImage.image,
+                        }, {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            },
+                            cancelToken: source.token,
+                        });
+                        history.push("games");
+                    } catch (e) {
+                        console.error(e);
+                    }
+                } else {
+                    console.log("naam is een verplicht veld!");
                 }
             } else {
-                console.log("naam is een verplicht veld!");
+                console.log("prijs is een verplicht veld.");
             }
         } else {
-            console.log("prijs is een verplicht veld.");
+            toggleToBigWarning(true);
         }
     }
 
 
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
+        const convertToBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(file);
+                fileReader.onload = () => {
+                    resolve(fileReader.result);
+                };
+                fileReader.onerror = (error) => {
+                    reject(error);
+                };
+            });
+        };
 
 
-    const handleFileUpload = async (e) => {
-        const file = e.target.files[0];
-        console.log(file);
-        const base64 = await convertToBase64(file);
-        console.log(base64);
-        setPostImage({...postImage, "image": base64});
-        console.log(postImage);
-    };
+        const handleFileUpload = async (e) => {
+            const file = e.target.files[0];
+            console.log(file);
+            const base64 = await convertToBase64(file);
+            console.log(base64);
+            setPostImage({...postImage, "image": base64});
+            console.log(postImage);
+        };
 
 
+        return (
+            <>
+                <GamePageButtonsContainer/>
+                <h1>Upload game: </h1>
+                <form className="gameuploaden"
+                      onSubmit={handleGameUpload}>
+                    <p>Invoervelden</p>
 
-    return (
-        <>
-            <GamePageButtonsContainer />
-            <h1>Upload game: </h1>
-            <form className="gameuploaden"
-                  onSubmit={handleGameUpload}>
-                <p>Invoervelden</p>
+                    <div className="namefield">
+                        <label htmlFor="gamename">Game name</label>
+                        <input
+                            id="gamename"
+                            type="text"
+                            name="gamename"
+                            onChange={(e) => setGameName(e.target.value)}
+                            placeholder="(verplicht)"
+                        />
+                    </div>
 
-                <div className="namefield">
-                <label htmlFor="gamename">Game name</label>
-                <input
-                    id="gamename"
-                    type="text"
-                    name="gamename"
-                    onChange={(e) => setGameName(e.target.value)}
-                    placeholder="(verplicht)"
-                />
-                </div>
+                    <div className="systemfield">
+                        <label htmlFor="systemname">systeem</label>
+                        <select name="system"
+                                onChange={(e) => toggleSystem(e.target.value)}
+                        >
+                            <option value="gameboy">gameboy</option>
+                            <option value="gameboy color">gameboy color</option>
+                            <option value="gameboy advance">gameboy advance</option>
+                            <option value="nes">nes</option>
+                            <option value="snes">snes</option>
+                            <option value="nintendo 64">nintendo 64</option>
+                            <option value="gamecube">gamecube</option>
+                            <option value="game gear">game gear</option>
+                            <option value="master system">master system</option>
+                            <option value="megadrive">megadrive</option>
+                            <option value="dreamcast">dreamcast</option>
+                            <option value="psx">psx</option>
+                        </select>
+                    </div>
 
-                <div className="systemfield">
-                    <label htmlFor="systemname">systeem</label>
-                    <select name="system"
-                           onChange={(e)=> toggleSystem(e.target.value)}
-                            >
-                        <option value="gameboy">gameboy</option>
-                        <option value="gameboy color">gameboy color</option>
-                        <option value="gameboy advance">gameboy advance</option>
-                        <option value="nes">nes</option>
-                        <option value="snes">snes</option>
-                        <option value="nintendo 64">nintendo 64</option>
-                        <option value="gamecube">gamecube</option>
-                        <option value="game gear">game gear</option>
-                        <option value="master system">master system</option>
-                        <option value="megadrive">megadrive</option>
-                        <option value="dreamcast">dreamcast</option>
-                        <option value="psx">psx</option>
-                    </select>
-                </div>
+                    <div className="developerfield">
+                        <label htmlFor="developername">developer</label>
+                        <input
+                            id="developername"
+                            type="text"
+                            name="developer"
+                            onChange={(e) => setDeveloper(e.target.value)}
+                            placeholder="developer"
+                        />
+                    </div>
 
-                <div className="developerfield">
-                    <label htmlFor="developername">developer</label>
-                <input
-                    id="developername"
-                    type="text"
-                    name="developer"
-                    onChange={(e) => setDeveloper(e.target.value)}
-                    placeholder="developer"
-                />
-                </div>
-
-                <div className="pricefield">
-                    <label htmlFor="price">prijs</label>
-                <input
-                    id="price"
-                    type="number"
-                    name="price"
-                    step="0.01"
-                    min="0"
-                    onChange={(e)=> setPrice(e.target.value)}
-                    placeholder="(verplicht)"
-                />
-                </div>
-
+                    <div className="pricefield">
+                        <label htmlFor="price">prijs</label>
+                        <input
+                            id="price"
+                            type="number"
+                            name="price"
+                            step="0.01"
+                            min="0"
+                            onChange={(e) => setPrice(e.target.value)}
+                            placeholder="(verplicht)"
+                        />
+                    </div>
 
 
-                <label htmlFor="Image">foto upload</label>
-                <input
-                    id="Image"
-                    type="file"
-                    name="myImage"
-                    accept=".jpeg, .png, .jpg"
-                    onChange={(e) => handleFileUpload(e)}
-                />
+                    <label htmlFor="Image">foto upload</label>
+                    <input
+                        id="Image"
+                        type="file"
+                        // maxLength={250000}
+                        name="myImage"
+                        accept=".jpeg, .png, .jpg"
+                        onChange={(e) => handleFileUpload(e)}
+                    />
 
 
-                <button
-                    type="submit"
-                >
-                    Submit
-                </button>
+                    <button
+                        type="submit"
+                    >
+                        Submit
+                    </button>
+                    {toBigWarning ? <h1>Foto is te groot zoek kleinere afbeelding</h1> : <> </>}
 
-            </form>
-        </>
+                </form>
+            </>
 
 
-    );
-}
+        );
+    }
 
-export default UploadGame;
+    export default UploadGame;

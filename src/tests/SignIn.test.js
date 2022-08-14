@@ -1,4 +1,3 @@
-import handleSubmit from "../pages/signIn/SignIn";
 
 test("SignIn", async () => {
     //arrange

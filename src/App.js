@@ -21,6 +21,7 @@ import AdminPageDeletedUsers from "./pages/adminpage/AdminPageDeletedUsers";
 import GamesBySystem from "./pages/gamepage/GamesBySystem";
 import MyGames from "./pages/gamepage/MyGames";
 import ProfileEdit from "./pages/profilepage/ProfileEdit";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
     const {isAuth} = useContext(AuthContext);
@@ -32,6 +33,7 @@ function App() {
 
     return (
         <>
+            <BrowserRouter>
             <TopMenu/>
             <div className="content">
                 <Switch>
@@ -91,6 +93,7 @@ function App() {
                     </Route>
                 </Switch>
             </div>
+            </BrowserRouter>
         </>
     );
 }

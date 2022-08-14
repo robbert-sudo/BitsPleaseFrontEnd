@@ -22,7 +22,6 @@ function UploadGame() {
     const source = axios.CancelToken.source();
 
     useEffect(() => {
-        console.log(user);
         const source = axios.CancelToken.source();
         return function cleanup() {
             source.cancel();
@@ -34,18 +33,10 @@ function UploadGame() {
 
         const token = localStorage.getItem('token');
 
-        console.log(gameName);
-        console.log(system);
-        console.log(developer);
-        console.log(postImage);
-        console.log(postImage.image);
-
-
         if (postImage.image.length <= 250000) {
                     toggleToBigWarning(false);
             if (gameName !== null) {
                 if (price !== null) {
-                    console.log(user.user_id);
                     try {
                         await axios.post('http://localhost:8080/games', {
                             "name": gameName,
@@ -93,11 +84,8 @@ function UploadGame() {
 
         const handleFileUpload = async (e) => {
             const file = e.target.files[0];
-            console.log(file);
             const base64 = await convertToBase64(file);
-            console.log(base64);
             setPostImage({...postImage, "image": base64});
-            console.log(postImage);
         };
 
 

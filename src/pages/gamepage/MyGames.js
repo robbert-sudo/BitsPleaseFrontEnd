@@ -33,9 +33,8 @@ function MyGames() {
         }
 
         fetchMyGameData();
-    }, [])
+    }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
-    console.log(gamesData);
     const mapGameData = gamesData && gamesData.map((gameProp, pos) =>
 
             <GameSummary game={gameProp} key={pos}/>

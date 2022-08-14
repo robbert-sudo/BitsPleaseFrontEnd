@@ -32,7 +32,6 @@ function FullGame() {
                 });
 
                 setGameData(result.data);
-                console.log(result.data);
 
             } catch (e) {
                 console.error(e);
@@ -63,7 +62,6 @@ function FullGame() {
 
                     const averageWithTwoDecimals = (average.data).toFixed(1);
                     toggleUserAverage(averageWithTwoDecimals);
-                    console.log(average.data);
 
 
                 } catch (e) {

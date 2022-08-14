@@ -19,9 +19,6 @@ function AdminPageUsers() {
                     },
                     cancelToken: source.token,
                 });
-
-                console.log(result);
-                console.log(result.data);
                 setUserData(result.data);
 
             } catch (e) {

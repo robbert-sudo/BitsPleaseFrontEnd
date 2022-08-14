@@ -11,7 +11,6 @@ function RatingPage() {
     const source = axios.CancelToken.source();
 
 
-    console.log(uploaderId);
 
     useEffect(() => {
 
@@ -28,7 +27,6 @@ function RatingPage() {
                     cancelToken: source.token,
                 });
                 toggleToBeRated(result.data);
-                console.log(result.data);
 
             } catch (e) {
                 console.error(e);

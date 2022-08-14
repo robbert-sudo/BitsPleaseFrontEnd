@@ -45,8 +45,6 @@ function AuthContextProvider({children}) {
 
         // decode de token zodat we de id(username) van de gebruiker hebben en data kunnen ophalen voor de context
         const decoded = jwt_decode(JWT);
-        console.log(decoded);
-        console.log(decoded.sub);
 
         // op basis van die informatie kunnen we de gebruikersgegevens ophalen via een GET-request
 
@@ -106,9 +104,6 @@ function AuthContextProvider({children}) {
                 },
             });
 
-            console.log(result.data);
-            console.log(result.data.username);
-            console.log(result.data.authorities);
             //check of de gebruiker admin rechten heeft en sla dit op als boolean in let admin
            admin = adminCheck(result);
 

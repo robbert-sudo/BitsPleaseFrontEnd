@@ -21,7 +21,6 @@ function GamesBySystem() {
                 cancelToken: source.token,
             });
             setGamesData(result.data);
-            console.log(result.data);
         } catch (e) {
             console.error(e);
         }

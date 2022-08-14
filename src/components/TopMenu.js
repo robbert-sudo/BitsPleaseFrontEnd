@@ -4,7 +4,6 @@ import {useHistory, Link} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 import './TopMenu.css'
 import SystemButton from "./SystemButton";
-import CustomButton from "./MenuButton";
 import MenuButton from "./MenuButton";
 
 function TopMenu() {
@@ -39,39 +38,17 @@ function TopMenu() {
 
             {admin ?
                 <MenuButton clickAction={() => history.push("/adminpage")} text="admin page" />
-
-
-                //     <button className="button"
-                //             type="button"
-                //             onClick={() => history.push("/adminpage")}
-                //     >
-                //         admin page
-                //     </button>
-
-
-                : <>
-
-                </>}
+                : <></>}
             {isAuth ?
                 <div>
-
                     <MenuButton clickAction={logout} text="Log uit" />
-
-                    {/*<button className="button"*/}
-                    {/*        type="button"*/}
-                    {/*        onClick={logout}>*/}
-                    {/*    Log uit*/}
-                    {/*</button>*/}
-
                     <MenuButton clickAction={()=> history.push("/gamesbyname")} text="Ga naar games" />
                     <MenuButton clickAction={() => history.push("/profile")} text="Mijn profiel" />
                 </div>
                 :
                 <div>
-
                     <MenuButton clickAction={() => history.push("/signin")} text="Log in" />
                     <MenuButton clickAction={() => history.push("/signup")} text="Registreren" />
-
                 </div>}
         </div>
     );

@@ -10,8 +10,6 @@ function SignUp() {
     const [password, togglePassword] = useState("");
 
     //state voor functionaliteit
-    const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
     const history = useHistory()
     const source = axios.CancelToken.source();
 
@@ -25,8 +23,6 @@ function SignUp() {
 
     async function handleRegister(e) {
         e.preventDefault();
-        toggleError(false);
-        toggleLoading(true);
 
         try {
             console.log(password);
@@ -41,9 +37,7 @@ function SignUp() {
             history.push("signin");
         } catch (e) {
             console.error(e);
-            toggleError(true);
         }
-        toggleLoading(false);
     }
 
 

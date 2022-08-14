@@ -4,6 +4,8 @@ import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {AuthContext} from "../../context/AuthContext";
+import {Card} from "reactstrap";
+import MenuButton from "../../components/MenuButton";
 
 
 function Profile() {
@@ -45,7 +47,6 @@ function Profile() {
             try {
                 const decoded = jwt_decode(token);
                 const username = decoded.sub;
-                console.log(username);
                 const result = await axios.get(`http://localhost:8080/user/${username}`, {
                     headers: {
                         "Content-Type": "application/json",
@@ -53,7 +54,6 @@ function Profile() {
                     },
                     cancelToken: source.token,
                 });
-                console.log(result);
                 setProfileData({
                     username: result.data.username,
                     email: result.data.email,
@@ -86,33 +86,27 @@ function Profile() {
 
     return (
         <>
-            <div>
+            <section className="profile-page">
                 <h1>Profielpagina</h1>
-                <section>
+                <Card className="profile-card">
                     <h2>Gegevens</h2>
                     <p><strong>Gebruikersnaam:</strong> {profileData.username} </p>
                     <p><strong>User_id: </strong> {profileData.user_id} </p>
                     <p><strong>Email: </strong> {profileData.email}</p>
                     <p><strong>Authorities: </strong></p>
                     {authorityList}
-                </section>
-                <p>Terug naar de <Link to="/">Homepagina</Link></p>
-            </div>
-            <button className="button"
-                    type="button"
-                    onClick={() => history.push("profile/edit")}
-            >
-                mijn profiel aanpassen
-            </button>
+                </Card>
+                <nav>Terug naar de <Link to="/">Homepagina</Link></nav>
 
+                <MenuButton className="button" clickAction={() => history.push("profile/edit")}
+                            text="mijn profiel aanpassen"/>
+            </section>
 
             {!admini ? <>
-                <button className="button"
-                        type="button"
-                        onClick={() => history.push("deleteprofile")}
-                >
-                    Mijn profiel verwijderen
-                </button>
+
+                <MenuButton className="button" clickAction={() => history.push("deleteprofile")}
+                            text="Mijn profiel verwijderen" />
+
             </> : <> </>}
         </>
     );

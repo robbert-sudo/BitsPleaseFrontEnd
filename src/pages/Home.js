@@ -6,7 +6,7 @@ function Home() {
         <>
             <h1>Homepagina</h1>
             <section>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                <p>Deze tekst wordt nog aangepast. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Cum deleniti dicta dolorum explicabo hic ipsum laboriosam,
                     mollitia obcaecati perspiciatis sint sunt ut? Ab accusantium
                     at cumque, debitis dicta enim excepturi facilis fuga incidunt

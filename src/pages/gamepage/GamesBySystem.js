@@ -5,6 +5,7 @@ import GamePageButtonsContainer from "./gamepagecomponents/GamePageButtonsContai
 
 function GamesBySystem() {
     const [systemName, setSystemName] = useState(null);
+    const [gameName, setGameName] = useState("");
     const [gamesData, setGamesData] = useState([]);
 
     const source = axios.CancelToken.source();
@@ -13,7 +14,7 @@ function GamesBySystem() {
         e.preventDefault();
         const token = localStorage.getItem('token');
         try {
-            const result = await axios.get(`http://localhost:8080/games/system/${systemName}`, {
+            const result = await axios.get(`http://localhost:8080/games/systemandname/${systemName}?name=${gameName}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -30,11 +31,23 @@ function GamesBySystem() {
         <>
             <GamePageButtonsContainer />
             <div className="bars">
+                <select name="system"
+                        onChange={(e) => setSystemName(e.target.value)}
+                        >
+                    <option>kies systeem</option>
+                    <option value="gameboy">gameboy</option>
+                    <option value="nes">nes</option>
+                    <option value="snes">snes</option>
+                    <option value="megadrive">megadrive</option>
+                    <option value="dreamcast">dreamcast</option>
+                    <option value="gamecube">gamecube</option>
+                    <option value="gameboyadvance">gameboy advance</option>
+                </select>
         <form
             onSubmit={fetchGameBySystem}>
             <input className="searchbar"
                    type="text"
-                   onChange={(e) => setSystemName(e.target.value)}
+                   onChange={(e) => setGameName(e.target.value)}
                    placeholder="zoek game op systeem"
             />
             <button className="searchbutton"

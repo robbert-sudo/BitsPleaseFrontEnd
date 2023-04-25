@@ -38,6 +38,7 @@ function UploadGame() {
             if (gameName !== null) {
                 if (price !== null) {
                     try {
+                        const result =
                         await axios.post('http://localhost:8080/games', {
                             "name": gameName,
                             "system": system,
@@ -52,7 +53,7 @@ function UploadGame() {
                             },
                             cancelToken: source.token,
                         });
-                        history.push("games");
+                        history.push(`fullgamepage/${result.data.id}`);
                     } catch (e) {
                         console.error(e);
                     }

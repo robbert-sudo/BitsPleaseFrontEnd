@@ -7,6 +7,8 @@ function GamesBySystem() {
     const [systemName, setSystemName] = useState(null);
     const [gameName, setGameName] = useState("");
     const [gamesData, setGamesData] = useState([]);
+    const [gameListCount, setGameListCount] = useState("");
+    const [hasBeenSubmitted, toggleHasBeenSubmitted] = useState(false);
 
     const source = axios.CancelToken.source();
 
@@ -21,7 +23,9 @@ function GamesBySystem() {
                 },
                 cancelToken: source.token,
             });
+            toggleHasBeenSubmitted(true);
             setGamesData(result.data);
+            setGameListCount(result.data.length);
         } catch (e) {
             console.error(e);
         }
@@ -56,6 +60,11 @@ function GamesBySystem() {
             </button>
         </form>
         </div>
+            {hasBeenSubmitted ?
+                <>
+            {gameListCount ? <h1>Er zijn {gameListCount} resultaten</h1> : <h1>Er zijn geen resultaten</h1>
+                } </> :
+                <> </> }
             {gamesData && gamesData.map((item) => <GameSummary game={item} key={item.id}/>)}
         </>
     );
